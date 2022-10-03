@@ -1,5 +1,6 @@
 package event.kotlin.coroutines.vi
 
+import event.kotlin.coroutines.threadName
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -11,7 +12,7 @@ suspend fun main() = coroutineScope {
     repeat(aBoatLoadOfCoroutines) { // launch 1M coroutines!
         launch {
             delay(5.seconds)
-            print(".")
+            print("${threadName()}.")
         }
     }
 }

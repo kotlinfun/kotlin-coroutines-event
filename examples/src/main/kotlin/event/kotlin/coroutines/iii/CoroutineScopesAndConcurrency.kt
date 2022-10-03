@@ -1,5 +1,6 @@
 package event.kotlin.coroutines.iii
 
+import event.kotlin.coroutines.threadName
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -8,18 +9,18 @@ import kotlin.time.Duration.Companion.seconds
 
 fun main() = runBlocking {
     launchHelloWorlds()
-    println("Done")
+    println("${threadName()} Done")
 }
 
 // Concurrently executes both launched coroutines
 suspend fun launchHelloWorlds() = coroutineScope { // this: CoroutineScope
     launch {
         delay(2.seconds)
-        println("World 2")
+        println("${threadName()} World 2")
     }
     launch {
         delay(1.seconds)
-        println("World 1")
+        println("${threadName()} World 1")
     }
-    println("Hello")
+    println("${threadName()} Hello")
 }

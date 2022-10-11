@@ -1,5 +1,6 @@
 package event.kotlin.coroutines.v
 
+import event.kotlin.coroutines.log
 import event.kotlin.coroutines.threadName
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -12,19 +13,19 @@ suspend fun main() = coroutineScope { // this: CoroutineScope
     val theString = async { computeString() }
     val theBoolean = async { computeBoolean() }
 
-    println("${threadName()} Int: ${theInt.await()}, String: ${theString.await()}, Boolean: ${theBoolean.await()}")
+    log("Int: ${theInt.await()}, String: ${theString.await()}, Boolean: ${theBoolean.await()}")
 }
 
 private suspend fun computeInt(): Int {
 
-    println("${threadName()} computeInt")
+    log("computeInt")
     delay(1.seconds)
     return 3
 }
 
 private suspend fun computeString(): String {
 
-    println("${threadName()} computeInt")
+    log("computeInt")
     delay(2.seconds)
     return "Hola"
 }

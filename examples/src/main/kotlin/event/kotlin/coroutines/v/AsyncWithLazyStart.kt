@@ -1,5 +1,6 @@
 package event.kotlin.coroutines.v
 
+import event.kotlin.coroutines.log
 import kotlinx.coroutines.*
 import kotlin.system.*
 
@@ -10,9 +11,9 @@ fun main() = runBlocking<Unit> {
         // some computation
         one.start() // start the first one
         two.start() // start the second one
-        println("The answer is ${one.await() + two.await()}")
+        log("The answer is ${one.await() + two.await()}")
     }
-    println("Completed in $time ms")
+    log("Completed in $time ms")
 }
 
 suspend fun doSomethingUsefulOne(): Int {

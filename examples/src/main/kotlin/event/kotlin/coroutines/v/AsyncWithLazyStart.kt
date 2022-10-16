@@ -4,7 +4,7 @@ import event.kotlin.coroutines.log
 import kotlinx.coroutines.*
 import kotlin.system.*
 
-fun main() = runBlocking<Unit> {
+suspend fun main() = coroutineScope {
     val time = measureTimeMillis {
         val one = async(start = CoroutineStart.LAZY) { doSomethingUsefulOne() }
         val two = async(start = CoroutineStart.LAZY) { doSomethingUsefulTwo() }
@@ -18,10 +18,12 @@ fun main() = runBlocking<Unit> {
 
 suspend fun doSomethingUsefulOne(): Int {
     delay(1000L) // pretend we are doing something useful here
+    log("doSomethingUsefulOne")
     return 13
 }
 
 suspend fun doSomethingUsefulTwo(): Int {
     delay(1000L) // pretend we are doing something useful here, too
+    log("doSomethingUsefulTwo")
     return 29
 }

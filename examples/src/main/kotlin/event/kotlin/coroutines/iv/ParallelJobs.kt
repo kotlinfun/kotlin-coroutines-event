@@ -14,15 +14,15 @@ fun main() = runBlocking {
 // Concurrently executes both launched coroutines
 suspend fun parallelWorlds() = coroutineScope { // this: CoroutineScope
 
-    val job1 = launch {
+    val job1 = launch(Dispatchers.IO) {
         delay(2.seconds)
         log("World 2")
     }
-    val job2 = launch {
+    val job2 = launch(Dispatchers.IO) {
         delay(3.seconds)
         log("World 1")
     }
-    val job3 = launch {
+    val job3 = launch(Dispatchers.IO) {
         delay(1.seconds)
         log("World 3")
     }

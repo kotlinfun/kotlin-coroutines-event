@@ -10,7 +10,7 @@ fun main() = runBlocking {
     val job = launch(Dispatchers.Default) {//notice runs on different thread from code below
         repeat(1000) { i ->
             log("job: I'm sleeping $i ...")
-            delay(500L)
+            delay(500L) //internally does is coroutine cancelled check
         }
     }
     delay(1300L) // delay a bit

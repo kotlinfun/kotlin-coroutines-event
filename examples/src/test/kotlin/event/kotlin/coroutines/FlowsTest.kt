@@ -117,7 +117,6 @@ class FlowsTest {
                     delay(1000)
                     println(value)
                 }
-                .catch { e -> println("Caught $e") }
                 .collect()
         }
         delay(3000)

@@ -108,28 +108,22 @@ class FlowsTest {
 
     }
 
-
     @Test
-    fun `flows with back pressure control`() = runBlocking {
-        val foo = flow {
-            log("Adding A")
-            emit("A")
-            log("Adding B")
-            emit("B")
-            log("Adding C & D")
-            emitAll(flowOf("C", "D"))
+    fun `cancel flow subscription`() = runBlocking {
+
+        val job = launch {
+            flowOf(1, 2, 3, 4)
+                .onEach { value ->
+                    delay(1000)
+                    println(value)
+                }
+                .catch { e -> println("Caught $e") }
+                .collect()
         }
-        foo.take(4).map { "$it Flowing" }.collect { x -> log(x); delay(100) }
+        delay(3000)
+        job.cancelAndJoin()
     }
 
-    @Test
-    fun `cancel subscription to a hot flow`() = runBlocking {
-
-        flowOf("a", "b", "c")
-            .onStart { emit("Begin") }
-            .onCompletion { emit("End") }
-            .collect { log(it) }
-    }
 
 }
 

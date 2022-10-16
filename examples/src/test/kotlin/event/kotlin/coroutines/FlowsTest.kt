@@ -84,7 +84,7 @@ class FlowsTest {
         flowOf(1, 2, 3, 4)
             .onEach { value ->
                 check(value != 2) { "Collected $value" }
-                println(value)
+                log(value)
             }
             .catch { e -> println("Caught $e") }
             .collect()
@@ -98,7 +98,7 @@ class FlowsTest {
             .onEach { value ->
                 try {
                     check(value != 2) { "Collected $value" }
-                    println(value)
+                    log(value)
                 } catch (e: Throwable) {
                     log("Error message=${e.message}")
                 }
@@ -109,17 +109,18 @@ class FlowsTest {
     }
 
     @Test
-    fun `cancel flow subscription`() = runBlocking {
+    fun `cancel flow processing`() = runBlocking {
 
         val job = launch {
             flowOf(1, 2, 3, 4)
                 .onEach { value ->
                     delay(1000)
-                    println(value)
+                    log(value)
                 }
                 .collect()
         }
         delay(3000)
+        log("Cancelling flow processing")
         job.cancelAndJoin()
     }
 

@@ -12,7 +12,7 @@ fun main() = runBlocking {
                 // print a message twice a second
                 log("job: I'm sleeping $i ...")
                 delay(500)
-            } catch (e: Exception) {
+            } catch (e: CancellationException) {
                 // log the exception
                 log(e.message!!) //prints StandaloneCoroutine was cancelled
             }

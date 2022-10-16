@@ -1,9 +1,7 @@
 package event.kotlin.coroutines.i
 
 import event.kotlin.coroutines.log
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlin.time.Duration.Companion.seconds
 
 fun main() = runBlocking { // this: CoroutineScope

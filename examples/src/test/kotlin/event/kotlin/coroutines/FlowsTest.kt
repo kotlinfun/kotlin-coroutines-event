@@ -78,6 +78,58 @@ class FlowsTest {
         log("Square of the first 5 integers: $first5SquaredIntegers")
     }
 
+    @Test
+    fun `flows processing throws an uncaught exception`() = runBlocking {
+
+        flowOf(1, 2, 3, 4)
+            .onEach { value ->
+                check(value != 2) { "Collected $value" }
+                println(value)
+            }
+            .catch { e -> println("Caught $e") }
+            .collect()
+
+    }
+
+    @Test
+    fun `flows custom exception handling while processing`() = runBlocking {
+
+        flowOf(1, 2, 3, 4)
+            .onEach { value ->
+                try {
+                    check(value != 2) { "Collected $value" }
+                    println(value)
+                } catch (e: Throwable) {
+                    log("Error message=${e.message}")
+                }
+            }
+            .catch { e -> println("Caught $e") }
+            .collect()
+
+    }
+
+
+    @Test
+    fun `flows with back pressure control`() = runBlocking {
+        val foo = flow {
+            log("Adding A")
+            emit("A")
+            log("Adding B")
+            emit("B")
+            log("Adding C & D")
+            emitAll(flowOf("C", "D"))
+        }
+        foo.take(4).map { "$it Flowing" }.collect { x -> log(x); delay(100) }
+    }
+
+    @Test
+    fun `cancel subscription to a hot flow`() = runBlocking {
+
+        flowOf("a", "b", "c")
+            .onStart { emit("Begin") }
+            .onCompletion { emit("End") }
+            .collect { log(it) }
+    }
 
 }
 

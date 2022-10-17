@@ -5,6 +5,7 @@ import kotlinx.coroutines.*
 import kotlin.system.*
 
 suspend fun main() = coroutineScope {
+
     val time = measureTimeMillis {
         val one = async(start = CoroutineStart.LAZY) { doSomethingUsefulOne() }
         val two = async(start = CoroutineStart.LAZY) { doSomethingUsefulTwo() }

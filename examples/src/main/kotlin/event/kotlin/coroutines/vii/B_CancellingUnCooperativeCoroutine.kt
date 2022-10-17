@@ -15,6 +15,7 @@ fun main() = runBlocking {
             } catch (e: CancellationException) {
                 // log the exception
                 log(e.message!!) //prints StandaloneCoroutine was cancelled
+                //throw e
             }
         }
     }

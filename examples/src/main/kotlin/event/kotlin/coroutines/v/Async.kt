@@ -6,7 +6,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.seconds
 
-suspend fun main() = coroutineScope { // this: CoroutineScope (This function is designed for parallel decomposition of work)
+suspend fun main() = coroutineScope {
 
     val theInt = async { computeInt() } //async returns Deferred Coroutine
     val theString = async { computeString() }
@@ -24,7 +24,7 @@ private suspend fun computeInt(): Int {
 
 private suspend fun computeString(): String {
 
-    log("computeInt")
+    log("computeString")
     delay(2.seconds)
     return "Hola"
 }

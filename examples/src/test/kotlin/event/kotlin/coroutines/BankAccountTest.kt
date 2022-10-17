@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test
 
 class BankAccountTest {
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun increaseBalanceTest() = runTest { //runTest same as runBlocking but skips delays
 
@@ -36,7 +37,6 @@ class BankAccountTest {
 
 }
 
-//cancellation and catch on Error
 
 class BankAccount {
 

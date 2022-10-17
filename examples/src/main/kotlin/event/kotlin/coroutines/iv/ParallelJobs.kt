@@ -11,7 +11,6 @@ fun main() = runBlocking {
     log("Done")
 }
 
-// Concurrently executes both launched coroutines
 suspend fun parallelWorlds() = coroutineScope { // this: CoroutineScope
 
     val job1 = launch(Dispatchers.IO) {
@@ -29,3 +28,5 @@ suspend fun parallelWorlds() = coroutineScope { // this: CoroutineScope
 
     joinAll(job1, job2, job3)
 }
+
+//TODO using job make no different, almost the same CoroutineScopesAndConcurrency

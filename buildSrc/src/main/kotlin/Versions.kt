@@ -11,7 +11,7 @@ object Versions {
         }
     }
 
-    object Kotlin { // TODO check all versions and upgrade
+    object Kotlin {
 
         const val value = "1.7.20"
 

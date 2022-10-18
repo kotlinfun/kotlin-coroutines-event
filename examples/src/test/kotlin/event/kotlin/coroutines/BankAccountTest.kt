@@ -1,4 +1,3 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
 
 package event.kotlin.coroutines
 
@@ -11,40 +10,38 @@ import org.junit.jupiter.api.Test
 
 class BankAccountTest {
 
+    // TODO see https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-test/MIGRATION.md
+    @Test
+    fun `when depositing the bank balance should increase`() = runBlocking {
+
+        val testBankAccount = BankAccount()
+        val expectedBalance = 110
+
+        testBankAccount.deposit(10)
+
+        assertThat(testBankAccount.balance).isEqualTo(expectedBalance)
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun increaseBalanceTest() = runTest { //runTest same as runBlocking but skips delays
+    fun `when depositing the bank balance should increase (with no delays)`() = runTest { //runTest same as runBlocking but skips delays
 
         val testBankAccount = BankAccount()
         val expectedBalance = 110
 
-        testBankAccount.increaseBalance(10)
+        testBankAccount.deposit(10)
 
         assertThat(testBankAccount.balance).isEqualTo(expectedBalance)
     }
-
-    @Test
-    fun increaseBalanceBlockingTest() = runBlocking {
-
-        val testBankAccount = BankAccount()
-        val expectedBalance = 110
-
-        testBankAccount.increaseBalance(10)
-
-        assertThat(testBankAccount.balance).isEqualTo(expectedBalance)
-    }
-
 
 }
-
 
 class BankAccount {
 
     var balance: Int = 100
 
-    suspend fun increaseBalance(amount: Int) {
+    suspend fun deposit(amount: Int) {
         delay(1000)
         balance += amount
     }
-
 }

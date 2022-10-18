@@ -25,8 +25,7 @@ A Job instance in the coroutineContext represents the coroutine itself. Is retur
 <img height="326" src="../images/coroutines-elements.png" title="Coroutine Elements" width="523" alt="Coroutine Elements"/>
 
 
-
 Notes:
-- the compiler converts a suspend function into continuation
+- the compiler converts a suspend function into state machine and add an additional continuation parameter
 - the compiler identifies suspension within the suspend function
 -  https://medium.com/androiddevelopers/the-suspend-modifier-under-the-hood-b7ce46af624f

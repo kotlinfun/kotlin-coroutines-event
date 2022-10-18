@@ -14,7 +14,6 @@ import kotlin.time.Duration.Companion.seconds
 @TestInstance(PER_CLASS)
 class FlowsTest {
 
-
     @Test
     fun `flows are (normally) cold`() = runBlocking {
 

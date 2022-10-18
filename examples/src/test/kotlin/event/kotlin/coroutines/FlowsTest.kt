@@ -79,6 +79,22 @@ class FlowsTest {
     }
 
     @Test
+    fun `cancel flow processing`() = runBlocking {
+
+        val job = launch {
+            flowOf(1, 2, 3, 4)
+                .onEach { value ->
+                    delay(1000)
+                    log(value)
+                }
+                .collect()
+        }
+        delay(3000)
+        log("Cancelling flow processing")
+        job.cancelAndJoin()
+    }
+
+    @Test
     fun `flows processing throws an uncaught exception`() = runBlocking {
 
         flowOf(1, 2, 3, 4)
@@ -108,30 +124,17 @@ class FlowsTest {
 
     }
 
-    fun numbers(counter: Int = 1): Flow<Int> {
-
-        var counter = counter
-        return flow {
-            while (true) {
-                if (counter % 5 == 0) {
-                    throw (MultipleOf5Exception(counter))
-                }
-                emit(counter++)
-            }
-        }
-    }
-
-    class MultipleOf5Exception(val number: Int) : Exception()
-
     @Test
-    fun `fuck`() = runBlocking {
+    fun `resurrect a flow after exception thrown`() = runBlocking {
 
         val resilientNumbers = resilientNumbers()
 
         resilientNumbers.take(50).onEach { println(it) }.collect()
     }
 
-    fun resilientNumbers(counter: Int = 1): Flow<Int> {
+    class MultipleOf5Exception(val number: Int) : Exception()
+
+    private fun resilientNumbers(counter: Int = 1): Flow<Int> {
 
         return numbers(counter).catch {
             if (it is MultipleOf5Exception) {
@@ -141,22 +144,18 @@ class FlowsTest {
         }
     }
 
-    @Test
-    fun `cancel flow processing`() = runBlocking {
+    private fun numbers(counter: Int = 1): Flow<Int> {
 
-        val job = launch {
-            flowOf(1, 2, 3, 4)
-                .onEach { value ->
-                    delay(1000)
-                    log(value)
+        var counterCopy = counter
+        return flow {
+            while (true) {
+                if (counter % 5 == 0) {
+                    throw (MultipleOf5Exception(counterCopy))
                 }
-                .collect()
+                emit(counterCopy++)
+            }
         }
-        delay(3000)
-        log("Cancelling flow processing")
-        job.cancelAndJoin()
     }
-
 
 }
 

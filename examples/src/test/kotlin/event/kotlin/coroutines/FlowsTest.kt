@@ -108,6 +108,39 @@ class FlowsTest {
 
     }
 
+    fun numbers(counter: Int = 1): Flow<Int> {
+
+        var counter = counter
+        return flow {
+            while (true) {
+                if (counter % 5 == 0) {
+                    throw (MultipleOf5Exception(counter))
+                }
+                emit(counter++)
+            }
+        }
+    }
+
+    class MultipleOf5Exception(val number: Int) : Exception()
+
+    @Test
+    fun `fuck`() = runBlocking {
+
+        val resilientNumbers = resilientNumbers()
+
+        resilientNumbers.take(50).onEach { println(it) }.collect()
+    }
+
+    fun resilientNumbers(counter: Int = 1): Flow<Int> {
+
+        return numbers(counter).catch {
+            if (it is MultipleOf5Exception) {
+                println("A multiple of 5! Number was: ${it.number}. Resuming from the next number")
+                emitAll(resilientNumbers(it.number + 1))
+            } else throw it
+        }
+    }
+
     @Test
     fun `cancel flow processing`() = runBlocking {
 

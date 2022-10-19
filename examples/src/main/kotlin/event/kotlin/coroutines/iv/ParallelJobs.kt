@@ -30,5 +30,4 @@ suspend fun parallelWorlds() = coroutineScope { // this: CoroutineScope
     joinAll(job1, job2, job3)
     println("All are done")
 }
-
-// TODO using job make no different, almost the same CoroutineScopesAndConcurrency
+//examples of waiting for coroutine to complete , example of structured concurrency

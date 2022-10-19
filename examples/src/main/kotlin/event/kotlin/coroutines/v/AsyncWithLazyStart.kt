@@ -10,7 +10,11 @@ suspend fun main() = coroutineScope {
         val one = async(start = CoroutineStart.LAZY) { doSomethingUsefulOne() }
         val two = async(start = CoroutineStart.LAZY) { doSomethingUsefulTwo() }
         // some computation
+        delay(1000)
+        log("Now starting one")
         one.start() // start the first one
+        delay(1000)
+        log("Now starting two")
         two.start() // start the second one
         log("The answer is ${one.await() + two.await()}")
     }
@@ -18,13 +22,11 @@ suspend fun main() = coroutineScope {
 }
 
 suspend fun doSomethingUsefulOne(): Int {
-    delay(1000L) // pretend we are doing something useful here
     log("doSomethingUsefulOne")
     return 13
 }
 
 suspend fun doSomethingUsefulTwo(): Int {
-    delay(1000L) // pretend we are doing something useful here, too
     log("doSomethingUsefulTwo")
     return 29
 }

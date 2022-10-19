@@ -15,7 +15,6 @@ fun main() = runBlocking {
     }
     delay(1300L) // delay a bit
     log("I'm tired of waiting!")
-    job.cancel() // cancels the job
-    job.join() // waits for job's completion
+    job.cancelAndJoin() //show this
     log("Now I can quit.")
 }

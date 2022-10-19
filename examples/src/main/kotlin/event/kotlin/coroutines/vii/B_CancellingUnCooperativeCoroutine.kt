@@ -24,3 +24,7 @@ fun main() = runBlocking {
     job.cancelAndJoin() // cancels the job and waits for its completion
     log("Now I can quit.")
 }
+
+// when a coroutine is cancelled a CancellationException is thrown, that sets the isActive to false. However this can be handled incorrectly
+
+// TODO create example showing Thread.sleep

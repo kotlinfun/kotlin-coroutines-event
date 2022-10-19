@@ -11,4 +11,7 @@ fun main() = runBlocking { // this: CoroutineScope
         log("World!") // print after delay
     }
     log("Hello") // main coroutine continues while a previous one is delayed
-}
+}//wait for all child coroutines
+
+
+//What is going to do

@@ -4,6 +4,7 @@ import kotlinx.coroutines.*
 
 @OptIn(DelicateCoroutinesApi::class)
 fun main() = runBlocking {
+
     launch { // context of the parent, main runBlocking coroutine
         println("main runBlocking      : I'm working in thread ${Thread.currentThread().name}")
     }
@@ -17,6 +18,8 @@ fun main() = runBlocking {
     val job = launch(singleThreadedContext) { // will get its own new thread
         println("newSingleThreadContext: I'm working in thread ${Thread.currentThread().name}")
     }
+//    Dispatchers.IO.limitedParallelism(1)
+
     job.join()
     singleThreadedContext.close()
 }

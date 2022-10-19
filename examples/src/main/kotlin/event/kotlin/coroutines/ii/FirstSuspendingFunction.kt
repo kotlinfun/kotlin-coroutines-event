@@ -18,3 +18,6 @@ suspend fun doWorld() {
     delay(2.seconds)
     log("World!")
 }
+//  What if we want extract to separate function
+//  in order to use suspending functions the functions needs
+// Use debug

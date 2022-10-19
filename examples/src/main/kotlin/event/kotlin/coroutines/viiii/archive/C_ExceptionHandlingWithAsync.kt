@@ -1,8 +1,9 @@
-package event.kotlin.coroutines.viiii
+package event.kotlin.coroutines.viiii.archive
 
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 import kotlin.time.Duration.Companion.seconds
 
 
@@ -17,7 +18,7 @@ suspend fun main() {
     println("Final")
 }
 
-private suspend fun faultyFunction() = coroutineScope<Unit> {
+private suspend fun faultyFunction() = supervisorScope<Unit> {
 
     println("Something going boom")
     launch {

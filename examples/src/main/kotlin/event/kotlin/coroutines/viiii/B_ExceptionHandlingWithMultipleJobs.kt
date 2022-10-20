@@ -33,5 +33,4 @@ private suspend fun faultyFunction() = coroutineScope<Unit> {
     println("Parent coroutine ..")
 }
 
-//exception in one child coroutine cancels all other children and parent
-//what happens if I use supervisor scope ?
+

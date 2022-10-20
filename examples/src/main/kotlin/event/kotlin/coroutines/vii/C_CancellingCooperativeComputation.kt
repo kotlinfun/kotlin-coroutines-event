@@ -25,4 +25,4 @@ fun main() = runBlocking {
 }
 
 
-// If a function has a processing loop it can check for cancellation by checking isActive property of the coroutine
+

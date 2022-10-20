@@ -25,5 +25,3 @@ fun main() = runBlocking {
     log("Now I can quit.")
 }
 
-// when a coroutine is cancelled a CancellationException is thrown, that sets the isActive to false. However, this can be handled incorrectly
-// swallowing CancellationException makes the coroutine cooperative

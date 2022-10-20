@@ -23,4 +23,3 @@ suspend fun launchHelloWorlds() = coroutineScope { // this: CoroutineScope
     log("Hello")
 }
 
-//in order spin other coroutines we to be run in a coroutine scope

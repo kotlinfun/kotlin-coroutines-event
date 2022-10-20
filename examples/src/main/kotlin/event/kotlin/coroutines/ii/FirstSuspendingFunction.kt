@@ -19,5 +19,3 @@ suspend fun doWorld() { //suspend modifier required for function to run inside a
     log("World!")
 }
 
-// What if we want extract to separate function
-// note the IDE indicator of a suspend function being called

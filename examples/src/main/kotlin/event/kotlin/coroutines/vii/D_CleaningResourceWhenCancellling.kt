@@ -29,7 +29,7 @@ private suspend fun cleanUpResources() {
         log("Cleaned up resources")
     }
 }
-//If you want to clean up resources on cancellation
+
 
 //can be appended to an existing job
 //private suspend fun main() = coroutineScope {

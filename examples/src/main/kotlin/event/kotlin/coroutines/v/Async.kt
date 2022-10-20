@@ -31,5 +31,3 @@ private suspend fun computeString(): String {
 
 private suspend fun computeBoolean(): Boolean = computeInt() % 2 == 0
 
-//if you want to wait for tasks to complete use async
-//returns a Deferred type, which allows you to await the task to complete

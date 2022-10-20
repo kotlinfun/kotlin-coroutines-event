@@ -19,5 +19,3 @@ fun main() = runBlocking {
     log("Now I can quit.")
 }
 
-//again using the job returned by job , but this time using it to cancel the coroutine
-//cancellation is facilitated by delay

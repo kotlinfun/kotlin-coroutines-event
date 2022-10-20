@@ -30,5 +30,3 @@ suspend fun parallelWorlds() = coroutineScope {
     joinAll(job1, job2, job3)
     println("All are done")
 }
-//examples of waiting for coroutines to complete , example of structured concurrency
-//launch returns a Job which represents the coroutine and provided the ability to wait for coroutine to complete

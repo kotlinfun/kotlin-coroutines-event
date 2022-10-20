@@ -1,9 +1,6 @@
 package event.kotlin.coroutines.viiii
 
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
+import kotlinx.coroutines.*
 import kotlin.time.Duration.Companion.seconds
 
 
@@ -13,7 +10,7 @@ suspend fun main() {
     println("Final")
 }
 
-private suspend fun faultyFunction() = supervisorScope<Unit> {
+private suspend fun faultyFunction() = coroutineScope<Unit> {
 
     val handler = CoroutineExceptionHandler { _, exception ->
         println("CoroutineExceptionHandler got $exception")
@@ -29,4 +26,3 @@ private suspend fun faultyFunction() = supervisorScope<Unit> {
     }
 }
 
-//You can uncaught exception handle to a coroutine

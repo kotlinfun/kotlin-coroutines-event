@@ -8,7 +8,7 @@ import kotlin.time.Duration.Companion.seconds
 
 suspend fun main() = coroutineScope {
 
-    val theInt = async { computeInt() } //async returns Deferred Coroutine
+    val theInt = async { computeInt() } //async returns Deferred Type
     val theString = async { computeString() }
     val theBoolean = async { computeBoolean() }
 
@@ -30,3 +30,6 @@ private suspend fun computeString(): String {
 }
 
 private suspend fun computeBoolean(): Boolean = computeInt() % 2 == 0
+
+//if you want to wait for tasks to complete use async
+//returns a Deferred type, which allows you to await the task to complete

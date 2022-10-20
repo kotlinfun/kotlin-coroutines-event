@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test
 
 class BankAccountTest {
 
-    // TODO see https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-test/MIGRATION.md
     @Test
     fun `when depositing the bank balance should increase`() = runBlocking {
 
@@ -45,3 +44,6 @@ class BankAccount {
         balance += amount
     }
 }
+
+
+//To test a suspend function you need to create coroutine first

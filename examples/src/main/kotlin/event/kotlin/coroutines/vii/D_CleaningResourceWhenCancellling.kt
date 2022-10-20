@@ -4,44 +4,23 @@ import event.kotlin.coroutines.log
 import kotlinx.coroutines.*
 import kotlin.time.Duration.Companion.seconds
 
-//fun main() = runBlocking {
-//    val job = launch {
-//        try {
-//            repeat(1000) { i ->
-//                log("job: I'm sleeping $i ...")
-//                delay(500L)
-//            }
-//        } finally {
-//            cleanUpResources()
-//        }
-//    }
-//    delay(1300L) // delay a bit
-//    log("main: I'm tired of waiting!")
-//    job.cancelAndJoin() // cancels the job and waits for its completion
-//    log("main: Now I can quit.")
-//}
-
-
-//can be appended to an existing job
-private suspend fun main() = coroutineScope {
-
+fun main() = runBlocking {
     val job = launch {
-        repeat(1000) { i ->
-            log("job: I'm sleeping $i ...")
-            delay(500L)
+        try {
+            repeat(1000) { i ->
+                log("job: I'm sleeping $i ...")
+                delay(500L)
+            }
+        } finally {
+            cleanUpResources()
         }
     }
-        val handle = job.invokeOnCompletion { error ->
-        if (error is CancellationException) {
-            runBlocking { cleanUpResources() }
-        }
-    }
-
     delay(1300L) // delay a bit
     log("main: I'm tired of waiting!")
     job.cancelAndJoin() // cancels the job and waits for its completion
     log("main: Now I can quit.")
 }
+
 
 private suspend fun cleanUpResources() {
 
@@ -50,3 +29,26 @@ private suspend fun cleanUpResources() {
         log("Cleaned up resources")
     }
 }
+//If you want to clean up resources on cancellation
+
+//can be appended to an existing job
+//private suspend fun main() = coroutineScope {
+//
+//    val job = launch {
+//        repeat(1000) { i ->
+//            log("job: I'm sleeping $i ...")
+//            delay(500L)
+//        }
+//    }
+//        val handle = job.invokeOnCompletion { error ->
+//        if (error is CancellationException) {
+//            runBlocking { cleanUpResources() }
+//        }
+//    }
+//
+//    delay(1300L) // delay a bit
+//    log("main: I'm tired of waiting!")
+//    job.cancelAndJoin() // cancels the job and waits for its completion
+//    log("main: Now I can quit.")
+//}
+

@@ -14,10 +14,10 @@ fun main() = runBlocking { // this: CoroutineScope
 }
 
 // Your first suspending function!
-suspend fun doWorld() {
+suspend fun doWorld() { //suspend modifier required for function to run inside a coroutine
     delay(2.seconds)
     log("World!")
 }
-//  What if we want extract to separate function
-//  in order to use suspending functions the functions needs
-// Use debug
+
+// What if we want extract to separate function
+// note the IDE indicator of a suspend function being called

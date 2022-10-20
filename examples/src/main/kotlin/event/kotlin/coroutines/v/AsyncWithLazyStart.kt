@@ -30,3 +30,6 @@ suspend fun doSomethingUsefulTwo(): Int {
     log("doSomethingUsefulTwo")
     return 29
 }
+
+//another feature of async allows for a lazy start
+//allows you to control when to start the coroutine

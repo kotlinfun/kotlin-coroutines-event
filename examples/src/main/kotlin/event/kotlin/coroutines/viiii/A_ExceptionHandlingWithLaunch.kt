@@ -11,7 +11,8 @@ fun main() = runBlocking {
         log("Throwing exception from launch")
         throw IndexOutOfBoundsException() // Will be printed to the console by Thread.defaultUncaughtExceptionHandler
     }
-    job.join()
+    job.join() //throws exception at this point
     log("Joined failed job")
 
 }
+

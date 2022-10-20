@@ -28,3 +28,5 @@ private suspend fun faultyFunction() = supervisorScope<Unit> {
         println("Running something else")
     }
 }
+
+//You can uncaught exception handle to a coroutine

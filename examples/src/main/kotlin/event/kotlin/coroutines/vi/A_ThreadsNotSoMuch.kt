@@ -1,7 +1,5 @@
 package event.kotlin.coroutines.vi
 
-import event.kotlin.coroutines.log
-import event.kotlin.coroutines.threadName
 import kotlin.concurrent.thread
 import kotlin.time.Duration.Companion.seconds
 
@@ -12,7 +10,7 @@ fun main() { // Look for `Failed to start the native thread for java.lang.Thread
     repeat(notAsManyThreads) {
         thread {
             Thread.sleep(5.seconds.inWholeMilliseconds)  //all threads delayed for 5 seconds
-            log(".")
+            print(".")
         }
     }
 }

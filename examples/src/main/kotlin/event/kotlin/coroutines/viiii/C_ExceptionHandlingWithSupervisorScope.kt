@@ -10,7 +10,7 @@ suspend fun main() {
     println("Final")
 }
 
-private suspend fun faultyFunction() = coroutineScope<Unit> {
+private suspend fun faultyFunction() = supervisorScope<Unit> {
 
     val handler = CoroutineExceptionHandler { _, exception ->
         println("CoroutineExceptionHandler got $exception")

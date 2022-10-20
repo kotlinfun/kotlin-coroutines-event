@@ -5,7 +5,7 @@ import kotlinx.coroutines.*
 import kotlin.time.Duration.Companion.seconds
 
 fun main() = runBlocking {
-    val job = launch {
+    val job = launch(Dispatchers.Default) {
         try {
             repeat(1000) { i ->
                 log("job: I'm sleeping $i ...")

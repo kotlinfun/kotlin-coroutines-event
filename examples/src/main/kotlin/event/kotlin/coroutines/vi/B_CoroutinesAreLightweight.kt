@@ -1,5 +1,6 @@
 package event.kotlin.coroutines.vi
 
+import event.kotlin.coroutines.log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -13,9 +14,9 @@ suspend fun main() = coroutineScope {
     repeat(aBoatLoadOfCoroutines) { // launch 1M coroutines!
         launch(Dispatchers.IO) {
             delay(5.seconds) //all coroutines delayed for 5 seconds
-            print(".")
+            log(".")
         }
     }
 }
-// TODO create another example , show .. horizontally
+
 
